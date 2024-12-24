@@ -1,0 +1,60 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+    int no = 1;
+}
+<h2>Students</h2>
+<div class="m-sm-1 row-cols-6 p-sm-1">
+    @Html.ActionLink("Add Student", "New", "Student", "", htmlAttributes: 
+    new { @class = "text-success fw-bold" })
+</div>
+@if (Model != null && Model.Rows.Count > 0)
+{
+<div class="row m-sm-1 border-2 border-bottom bg-light text-secondary fw-bold fst-italic p-sm-1">
+    <div class="col-sm-1 p-sm-1">#</div>
+    <div class="col-sm-2 p-sm-1">Name</div>
+    <div class="col-sm-2 p-sm-1">Address</div>
+    <div class="col-sm-1 p-sm-1">Gender</div>
+    <div class="col-sm-1 p-sm-1">Course</div>
+</div>
+
+foreach (System.Data.DataRow dr in Model.Rows)
+{
+    <div class="row m-sm-1 border-bottom text-secondary">
+        <div class="col-sm-1 p-sm-1">
+            @no
+        </div>
+        <div class="col-sm-2 p-sm-1">
+            @dr["Name"].ToString()
+        </div>
+        <div class="col-sm-2 p-sm-1">
+            @dr["Address"].ToString()
+        </div>
+        <div class="col-sm-1 p-sm-1">
+            @dr["Gender"].ToString()
+        </div>
+        <div class="col-sm-1 p-sm-1">
+            @dr["Course"].ToString()
+        </div>
+        <div class="col-sm-2 p-sm-1">
+            @Html.ActionLink("Edit", "Edit", new { id = dr["StudentId"] }, new { @class = "text-success text-decoration-underline" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = dr["StudentId"] }, new
+       {
+           @class = "text-danger text-decoration-underline",
+           @onclick = "return confirm('Are you sure want to delete this record?')"
+       })
+        </div>
+       
+    </div>
+
+    no += 1;
+
+}
+}
+else 
+{ 
+    <div class="m-sm-1 p-sm-1 text-center fs-2 rounded-1 border fst-italic fw-bold" 
+         style="background-color:lightblue;color:dimgrey">
+        No Data Found
+    </div>
+}
