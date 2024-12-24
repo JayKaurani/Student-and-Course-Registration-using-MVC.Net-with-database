@@ -1,0 +1,14 @@
+﻿Flow to create an application
+StudentTable
+Student Model
+Add Connection String in a WebConfig
+StudentDB Class
+Student Controller
+	Index Action Method
+	Index View
+	New Action Method
+	Edit View
+	Save Action Method
+	Edit Action Method
+	Delete Action Method
+
